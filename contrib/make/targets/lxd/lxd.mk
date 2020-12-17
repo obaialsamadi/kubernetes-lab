@@ -15,7 +15,7 @@ LXD_CLEAN_TARGETS = $(KUBERNETES_TARGETS:%=lxd-clean-%)
 $(LXD_TARGETS):
 	- $(call print_running_target)
 	- $(eval name=$(@:lxd-%=%))
-	bash $(PWD)/contrib/scripts/lxd-provision/lxd-provision \
+	lxd-debian \
     --name '$(name)' \
     --privileged \
     --ssh-config \
