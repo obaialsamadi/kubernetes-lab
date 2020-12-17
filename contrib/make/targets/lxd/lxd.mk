@@ -19,6 +19,7 @@ $(LXD_TARGETS):
     --name '$(name)' \
     --privileged \
     --ssh-config \
+    --python \
     --starship \
     --rg \
     --spacevim
