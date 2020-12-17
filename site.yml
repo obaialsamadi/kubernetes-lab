@@ -1,4 +1,5 @@
-- hosts: all
+- name: Making sure python is available on remotes
+  hosts: all
   gather_facts: no
   pre_tasks:
   - name: "Asserting variables globally used variables"
@@ -22,4 +23,10 @@
       raw: 'apt-get install -yqq python-apt'
       when: result.rc != 0
   become: yes
+- name: Kubernetes the hard way
+  hosts: all
+  gather_facts: yes
+  roles:
+    - { role: 01-ansible-controller, tags: ["01-ansible-controller"]}  
+    - { role: 02-install-prerequisites, tags: ["02-install-prerequisites"]} 
 

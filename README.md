@@ -10,3 +10,11 @@ on you host.
 
 - `make init` : creates and installs some base packages on containers.
 - `make clean` : removes lxc containers
+
+## ansible
+
+- deploy
+
+```bash
+ansible-playbook -i staging --limit staging site.yml
+```

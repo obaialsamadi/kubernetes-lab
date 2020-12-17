@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     vb.cpus   = "#{CORE_LIMIT}"
     # => enable nested virtualization
     vb.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
-    override.vm.synced_folder ".", "/vagrant", owner: "vagrant",group: "vagrant", type: "virtualbox"
+    override.vm.synced_folder ".", "/vagrant/#{NAME}", owner: "vagrant",group: "vagrant", type: "virtualbox"
   end
   # [NOTE] => libvirt has not been tested
   config.vm.provider "libvirt" do |libvirt,override|
@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
     override.ssh.username         = 'vagrant'
     override.ssh.password         = 'vagrant'
     override.ssh.insert_key       = true
-    override.vm.synced_folder ".", "/vagrant", type: 'rsync',
+    override.vm.synced_folder ".", "/vagrant/#{NAME}", type: 'rsync',
       rsync__args: ["--verbose", "--archive", "-z"],
       owner: "vagrant",group: "vagrant",
       sync__exclude: [

@@ -15,7 +15,7 @@ if [ -n "$(command -v apt-get)" ]; then
     apt-utils net-tools lsof apt-transport-https \
     curl gnupg2 tree jq gnupg2 ntp htop \
     ufw dstat bash-completion unzip zip iperf \
-    software-properties-common netcat lsof \
+    software-properties-common netcat lsof sshpass \
     sysstat make build-essential rsync ca-certificates git \
     lsb-release aria2 xfonts-utils tmate ncdu neofetch >/dev/null 2>&1
 fi
