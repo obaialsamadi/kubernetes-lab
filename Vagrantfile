@@ -18,7 +18,6 @@ SCRIPT
 Vagrant.configure("2") do |config|
   config.vm.define "vagrant-#{NAME}"
   config.vm.hostname = "vagrant-#{NAME}"
-  config.vm.box = "generic/debian10"
   # => forward lxd port
   config.vm.network "forwarded_port", guest: 8443, host: 8443,auto_correct: true
   # => forward nomad server port
@@ -26,6 +25,7 @@ Vagrant.configure("2") do |config|
   # => forward port 8080 in case needed 
   config.vm.network "forwarded_port", guest: 8080, host: 8080,auto_correct: true
   config.vm.provider "virtualbox" do |vb, override|
+    override.vm.box = "generic/debian10"
     override.vagrant.plugins=["vagrant-share","vagrant-vbguest"]
     vb.memory = "#{MEMORY_LIMIT}"
     vb.cpus   = "#{CORE_LIMIT}"
@@ -100,11 +100,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell",privileged:true,name:"node", path: "contrib/vagrant/provision/node.sh"
   config.vm.provision "shell",privileged:false,name:"python", path: "contrib/vagrant/provision/python.sh"
   config.vm.provision "shell",privileged:false,name:"ansible", path: "contrib/vagrant/provision/ansible.sh"
-  config.vm.provision "shell",privileged:false,name:"goenv", path: "contrib/vagrant/provision/goenv.sh"
-  config.vm.provision "shell",privileged:false,name:"levant", path: "contrib/vagrant/provision/levant.sh"
-  config.vm.provision "shell",privileged:false,name:"rbenv", path: "contrib/vagrant/provision/rbenv.sh"
   config.vm.provision "shell",privileged:false,name:"spacevim", path: "contrib/vagrant/provision/spacevim.sh"
-  config.vm.provision "shell",privileged:true,name:"hashicorp", path: "contrib/vagrant/provision/hashicorp.sh"
   config.vm.provision "shell",privileged:true,name:"ripgrep", path: "contrib/vagrant/provision/ripgrep.sh"
   config.vm.provision "shell",privileged:true,name:"docker", path: "contrib/vagrant/provision/docker.sh"
   config.vm.provision "shell",privileged:true,name:"lxd", path: "contrib/vagrant/provision/lxd.sh"
