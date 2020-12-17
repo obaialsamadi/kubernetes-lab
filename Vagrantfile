@@ -62,6 +62,7 @@ Vagrant.configure("2") do |config|
   	    bash_source(file).each {|k,v| ENV[k] = v}
   	  end
   	end
+    override.vagrant.plugins=["vagrant-share","vagrant-openstack-provider","vagrant-rsync-back"]
     # make sure openstac rc file is sourced
     source_env_from("#{ENV['HOME']}/*-openrc.sh")
     # [NOTE] => disabled logs
